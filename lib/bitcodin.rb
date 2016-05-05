@@ -47,191 +47,191 @@ module Bitcodin
 
     # Create a new Input, which will be analyzed and used for transcoding jobs.
     def createInput(inputConfig)
-      url = @apiURL.concat('input/create')
+      url = @apiURL + 'input/create'
       return @httpClient.sendRequest('post', url, inputConfig.values)
     end
 
     # An existing input will be analyzed again and a new thumbnail will be created.
     def analyzeInput(id)
-      url = @apiURL.concat('input/').concat(id.to_s).concat('/analyze')
+      url = @apiURL + 'input/' + id.to_s + '/analyze'
       return @httpClient.sendRequest('patch', url)
     end
 
     def listInput(page = nil)
-      url = @apiURL.concat('inputs')
+      url = @apiURL + 'inputs'
       if page.nil?
         return @httpClient.sendRequest('get', url)
       else
-        url = url.concat('/').concat(page.to_s)
+        url = url + '/' + page.to_s
         return @httpClient.sendRequest('get', url)
       end
     end
 
     def getInputDetails(id)
-      url = @apiURL.concat('input/').concat(id.to_s)
+      url = @apiURL + 'input/' + id.to_s
       return @httpClient.sendRequest('get', url)
     end
 
     def deleteInput(id)
-      url = @apiURL.concat('input/').concat(id.to_s)
+      url = @apiURL + 'input/' + id.to_s
       return @httpClient.sendRequest('delete', url)
     end
 
     # Output
 
     def createS3Output(config)
-      url = @apiURL.concat('output/create')
+      url = @apiURL + 'output/create'
       return @httpClient.sendRequest('post', url, config.values)
     end
 
     def createGCSOutput(config)
-      url = @apiURL.concat('output/create')
+      url = @apiURL + 'output/create'
       return @httpClient.sendRequest('post', url, config.values)
     end
 
     def createFTPOutput(config)
-      url = @apiURL.concat('output/create')
+      url = @apiURL + 'output/create'
       return @httpClient.sendRequest('post', url, config.values)
     end
 
     def listOutputs(page = nil)
-      url = @apiURL.concat('outputs')
+      url = @apiURL + 'outputs'
       if page.nil?
         return @httpClient.sendRequest('get', url)
       else
-        url = url.concat('/').concat(page.to_s)
+        url = url + '/' + page.to_s
         return @httpClient.sendRequest('get', url)
       end
     end
 
     def getOutputDetails(id)
-      url = @apiURL.concat('output/').concat(id.to_s)
+      url = @apiURL + 'output/' + id.to_s
       return @httpClient.sendRequest('get', url)
     end
 
     def deleteOutput(id)
-      url = @apiURL.concat('output/').concat(id.to_s)
+      url = @apiURL + 'output/' + id.to_s
       return @httpClient.sendRequest('delete', url)
     end
 
     # Encoding Profiles
 
     def createEncodingProfile(config)
-      url = @apiURL.concat('encoding-profile/create')
+      url = @apiURL + 'encoding-profile/create'
       return @httpClient.sendRequest('post', url, config.values)
     end
 
     def listEncodingProfiles(page = nil)
-      url = @apiURL.concat('encoding-profiles')
+      url = @apiURL + 'encoding-profiles'
       if page.nil?
         return @httpClient.sendRequest('get', url)
       else
-        url = url.concat('/').concat(page.to_s)
+        url = url + '/' + page.to_s
         return @httpClient.sendRequest('get', url)
       end
     end
 
     def getEncodingProfile(id)
-      url = @apiURL.concat('encoding-profile/').concat(id.to_s)
+      url = @apiURL + 'encoding-profile/' + id.to_s
       return @httpClient.sendRequest('get', url)
     end
 
     def deleteEncodingProfile(id)
-      url = @apiURL.concat('encoding-profile/').concat(id.to_s)
+      url = @apiURL + 'encoding-profile/' + id.to_s
       return @httpClient.sendRequest('delete', url)
     end
 
     # Jobs
 
     def createJob(config)
-      url = @apiURL.concat('job/create')
+      url = @apiURL + 'job/create'
       response = @httpClient.sendRequest('post', url, config.values)
       return response
     end
 
     def listAllJobs(page = nil)
-      url = @apiURL.concat('jobs')
+      url = @apiURL + 'jobs'
       if page.nil?
         return @httpClient.sendRequest('get', url)
       else
-        url = url.concat('/').concat(page.to_s)
+        url = url + '/' + page.to_s
         return @httpClient.sendRequest('get', url)
       end
     end
 
     def getJobDetails(id)
-      url = @apiURL.concat('job/').concat(id.to_s)
+      url = @apiURL + 'job/' + id.to_s
       return @httpClient.sendRequest('get', url)
     end
 
     def getCurrentJobStatus(id)
-      url = @apiURL.concat('job/').concat(id.to_s).concat('/status')
+      url = @apiURL + 'job/' + id.to_s + '/status'
       return @httpClient.sendRequest('get', url)
     end
 
     def createTransferJob(config)
-      url = @apiURL.concat('job/transfer')
+      url = @apiURL + 'job/transfer'
       return @httpClient.sendRequest('post', url, config.values)
     end
 
     def listTransferJob(id)
-      url = @apiURL.concat('job/').concat(id.to_s).concat('/transfers')
+      url = @apiURL + 'job/' + id.to_s + '/transfers'
       return @httpClient.sendRequest('get', url)
     end
 
     def deleteJob(id)
-      url = @apiURL.concat('job/').concat(id.to_s)
+      url = @apiURL + 'job/' + id.to_s
       return @httpClient.sendRequest('delete', url)
     end
 
     # Statistics
 
     def getCurrentOutputStatus
-      url = @apiURL.concat('statistics')
+      url = @apiURL + 'statistics'
       return @httpClient.sendRequest('get', url)
     end
 
     def getJobStatistics(from, to)
-      url = @apiURL.concat('statistics/jobs/').concat(from.to_s).concat('/').concat(to.to_s)
+      url = @apiURL + 'statistics/jobs/' + from.to_s + '/' + to.to_s
       return @httpClient.sendRequest('get', url)
     end
 
     # Payment
 
     def updateInvoiceInfos(infos)
-      url = @apiURL.concat('payment/invoiceinfo')
+      url = @apiURL + 'payment/invoiceinfo'
       puts infos.values
       return @httpClient.sendRequest('post', url, infos.values)
     end
 
     def getInvoiceInfos
-      url = @apiURL.concat('payment/invoiceinfo')
+      url = @apiURL + 'payment/invoiceinfo'
       return @httpClient.sendRequest('get', url)
     end
 
     # Wallet
 
     def getWalletInformation
-      url = @apiURL.concat('payment/user')
+      url = @apiURL + 'payment/user'
       return @httpClient.sendRequest('get', url)
     end
 
     def getListOfAllDeposits(page = nil)
-      url = @apiURL.concat('payment/deposits')
+      url = @apiURL + 'payment/deposits'
       if page.nil?
         return @httpClient.sendRequest('get', url)
       else
-        url = url.concat('/').concat(page.to_s)
+        url = url + '/' + page.to_s
         return @httpClient.sendRequest('get', url)
       end
     end
 
     def getListOfAllBills(page = nil)
-      url = @apiURL.concat('payment/bills')
+      url = @apiURL + 'payment/bills'
       if page.nil?
         return @httpClient.sendRequest('get', url)
       else
-        url = url.concat('/').concat(page.to_s)
+        url = url + '/' + page.to_s
         return @httpClient.sendRequest('get', url)
       end
     end
